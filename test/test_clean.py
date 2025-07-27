@@ -1,12 +1,9 @@
-from extractor.clean import (
-    split_on_blank_row,
-    has_multiple_label,
-    shift_up,
-    remove_blank_col,
-)
-import pytest
-import pandas as pd
 import numpy as np
+import pandas as pd
+import pytest
+
+from extractor.clean import (has_multiple_label, remove_blank_col, shift_up,
+                             split_on_blank_row)
 
 
 @pytest.fixture
