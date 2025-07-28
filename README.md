@@ -30,6 +30,8 @@ Note that tabula library is being used. If you are Windows user make sure you ha
 
 ## Usage
 
+First of, you want to drop the pdf file onto the data folder, and update the pdf filename in the YAML config files.
+
 To run the extractor you can manually execute the main function run
 
 ```
