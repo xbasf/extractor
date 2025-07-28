@@ -1,0 +1,36 @@
+filename:
+  data/241025 Unicredit Macro & Markets Weekly Focus - python.pdf
+
+data_page:
+  2
+
+multiple_label_merge_strategy:
+  shift_up
+
+schemas:
+  - name: market
+    dtype: object
+    label_col: True
+  - name: asset
+    dtype: object
+    rename_col: True
+  - name: current_value_label
+    dtype: object
+    label_col: True
+  - name: current_value
+    dtype: float
+    rename_col: True
+  - name: 1M
+    dtype: float
+  - name: 3M
+    dtype: float
+  - name: 6M
+    dtype: float
+  - name: 12M
+    dtype: float
+  - name: YTD
+    dtype: float
+  - name: QTD
+    dtype: float
+
+get_stats: True
