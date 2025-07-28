@@ -43,7 +43,7 @@ def df1_df2_concat():
     ).astype(object)
 
 
-def test_split_on_blank_row__df_with_no_splits(df1):
+def test_split_on_blank_row__df_with_no_splits(df1: pd.DataFrame):
 
     result = split_on_blank_row(df1)
     assert isinstance(result, list)
@@ -51,7 +51,9 @@ def test_split_on_blank_row__df_with_no_splits(df1):
     pd.testing.assert_frame_equal(result[0], df1)
 
 
-def test_split_on_blank_row__df_with_splits(df1, df2, df1_df2_concat):
+def test_split_on_blank_row__df_with_splits(
+    df1: pd.DataFrame, df2: pd.DataFrame, df1_df2_concat: pd.DataFrame
+):
 
     result = split_on_blank_row(df1_df2_concat)
     assert isinstance(result, list)
@@ -64,12 +66,12 @@ def test_split_on_blank_row__df_with_splits(df1, df2, df1_df2_concat):
     "df, expected",
     [("df1", True), ("df2", False)],
 )
-def test_has_multiple_label(df, expected, request):
+def test_has_multiple_label(df: pd.DataFrame, expected: bool, request):
     result = has_multiple_label(request.getfixturevalue(df))
     assert result == expected
 
 
-def test_shift_up(df1):
+def test_shift_up(df1: pd.DataFrame):
 
     expected = pd.DataFrame(
         [
@@ -109,7 +111,9 @@ def test_shift_up(df1):
         ),
     ],
 )
-def test_remove_blank_col(df, input_is_fixture, expected, request):
+def test_remove_blank_col(
+    df: pd.DataFrame, input_is_fixture: bool, expected: pd.DataFrame, request
+):
     if input_is_fixture:
         df = request.getfixturevalue(df)
         expected = request.getfixturevalue(expected)

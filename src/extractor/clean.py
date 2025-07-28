@@ -56,9 +56,43 @@ def shift_up(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def collapse(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    This collapses the first row onto the column names, meaning that the first
+    row gets merged with the column names, the second row becomes the first row,
+    the third row becomes the second row and so on
+    """
+    new_cols = []
+    for col in df.columns:
+        first_value = df.loc[0, col]
+        if pd.isna(first_value):
+            new_cols.append(col)
+        else:
+            new_cols.append(" ".join([col, first_value]))
+
+    df.columns = new_cols
+    df = df.drop(df.index[0])
+    df = df.reset_index(drop=True)
+    return df
+
+
 def remove_blank_col(df: pd.DataFrame) -> pd.DataFrame:
     """
     This removes a column of the given dataframe if the column contains just
     null values
     """
     return df.dropna(how="all", axis=1)
+
+
+def basic_formating(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    This cleans every cell value for:
+        replace commas for dots
+        leading and trailing spaces
+    """
+    for col in df.columns:
+        if df[col].dtype != object:
+            continue
+        df.loc[:, col] = df[col].str.replace(",", ".")
+        df.loc[:, col] = df[col].str.strip()
+    return df
